@@ -1,131 +1,59 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using AnaOkuluYS.Data;
 using AnaOkuluYS.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace AnaOkuluYS.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class EtkinlikKatilimController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-
         public EtkinlikKatilimController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/EtkinlikKatilim
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<EtkinlikKatilim>>> GetEtkinlikKatilimlari()
+        public async Task<IActionResult> GetAll()
         {
-            return await _context.EtkinlikKatilimlari
-                .Include(k => k.Etkinlik)
-                .Include(k => k.Ogrenci)
-                .ToListAsync();
+            return Ok(await _context.EtkinlikKatilimlar.Include(e => e.Etkinlik).Include(e => e.Ogrenci).ToListAsync());
         }
 
-        // GET: api/EtkinlikKatilim/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<EtkinlikKatilim>> GetEtkinlikKatilim(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var etkinlikKatilim = await _context.EtkinlikKatilimlari
-                .Include(k => k.Etkinlik)
-                .Include(k => k.Ogrenci)
-                .FirstOrDefaultAsync(k => k.Id == id);
-
-            if (etkinlikKatilim == null)
-            {
-                return NotFound();
-            }
-
-            return etkinlikKatilim;
+            var katilim = await _context.EtkinlikKatilimlar.Include(e => e.Etkinlik).Include(e => e.Ogrenci).FirstOrDefaultAsync(e => e.Id == id);
+            if (katilim == null) return NotFound();
+            return Ok(katilim);
         }
 
-        // GET: api/EtkinlikKatilim/Etkinlik/5
-        [HttpGet("Etkinlik/{etkinlikId}")]
-        public async Task<ActionResult<IEnumerable<EtkinlikKatilim>>> GetEtkinlikKatilimlari(int etkinlikId)
-        {
-            return await _context.EtkinlikKatilimlari
-                .Include(k => k.Etkinlik)
-                .Include(k => k.Ogrenci)
-                .Where(k => k.EtkinlikId == etkinlikId)
-                .ToListAsync();
-        }
-
-        // GET: api/EtkinlikKatilim/Ogrenci/5
-        [HttpGet("Ogrenci/{ogrenciId}")]
-        public async Task<ActionResult<IEnumerable<EtkinlikKatilim>>> GetOgrenciKatilimlari(int ogrenciId)
-        {
-            return await _context.EtkinlikKatilimlari
-                .Include(k => k.Etkinlik)
-                .Include(k => k.Ogrenci)
-                .Where(k => k.OgrenciId == ogrenciId)
-                .ToListAsync();
-        }
-
-        // POST: api/EtkinlikKatilim
         [HttpPost]
-        public async Task<ActionResult<EtkinlikKatilim>> PostEtkinlikKatilim(EtkinlikKatilim etkinlikKatilim)
+        public async Task<IActionResult> Create(EtkinlikKatilim katilim)
         {
-            _context.EtkinlikKatilimlari.Add(etkinlikKatilim);
+            _context.EtkinlikKatilimlar.Add(katilim);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetEtkinlikKatilim", new { id = etkinlikKatilim.Id }, etkinlikKatilim);
+            return CreatedAtAction(nameof(Get), new { id = katilim.Id }, katilim);
         }
 
-        // PUT: api/EtkinlikKatilim/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEtkinlikKatilim(int id, EtkinlikKatilim etkinlikKatilim)
+        public async Task<IActionResult> Update(int id, EtkinlikKatilim katilim)
         {
-            if (id != etkinlikKatilim.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(etkinlikKatilim).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EtkinlikKatilimExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // DELETE: api/EtkinlikKatilim/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEtkinlikKatilim(int id)
-        {
-            var etkinlikKatilim = await _context.EtkinlikKatilimlari.FindAsync(id);
-            if (etkinlikKatilim == null)
-            {
-                return NotFound();
-            }
-
-            _context.EtkinlikKatilimlari.Remove(etkinlikKatilim);
+            if (id != katilim.Id) return BadRequest();
+            _context.Entry(katilim).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-
             return NoContent();
         }
 
-        private bool EtkinlikKatilimExists(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
-            return _context.EtkinlikKatilimlari.Any(e => e.Id == id);
+            var katilim = await _context.EtkinlikKatilimlar.FindAsync(id);
+            if (katilim == null) return NotFound();
+            _context.EtkinlikKatilimlar.Remove(katilim);
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
     }
 } 

@@ -1,120 +1,59 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using AnaOkuluYS.Data;
 using AnaOkuluYS.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace AnaOkuluYS.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class GelisimRaporuController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-
         public GelisimRaporuController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/GelisimRaporu
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GelisimRaporu>>> GetGelisimRaporlari()
+        public async Task<IActionResult> GetAll()
         {
-            return await _context.GelisimRaporlari
-                .Include(g => g.Ogrenci)
-                .Include(g => g.Ogretmen)
-                .ToListAsync();
+            return Ok(await _context.GelisimRaporlari.Include(g => g.Ogrenci).Include(g => g.Ogretmen).ToListAsync());
         }
 
-        // GET: api/GelisimRaporu/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<GelisimRaporu>> GetGelisimRaporu(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var gelisimRaporu = await _context.GelisimRaporlari
-                .Include(g => g.Ogrenci)
-                .Include(g => g.Ogretmen)
-                .FirstOrDefaultAsync(g => g.Id == id);
-
-            if (gelisimRaporu == null)
-            {
-                return NotFound();
-            }
-
-            return gelisimRaporu;
+            var rapor = await _context.GelisimRaporlari.Include(g => g.Ogrenci).Include(g => g.Ogretmen).FirstOrDefaultAsync(g => g.Id == id);
+            if (rapor == null) return NotFound();
+            return Ok(rapor);
         }
 
-        // GET: api/GelisimRaporu/Ogrenci/5
-        [HttpGet("Ogrenci/{ogrenciId}")]
-        public async Task<ActionResult<IEnumerable<GelisimRaporu>>> GetOgrenciGelisimRaporlari(int ogrenciId)
-        {
-            return await _context.GelisimRaporlari
-                .Include(g => g.Ogrenci)
-                .Include(g => g.Ogretmen)
-                .Where(g => g.OgrenciId == ogrenciId)
-                .ToListAsync();
-        }
-
-        // POST: api/GelisimRaporu
         [HttpPost]
-        public async Task<ActionResult<GelisimRaporu>> PostGelisimRaporu(GelisimRaporu gelisimRaporu)
+        public async Task<IActionResult> Create(GelisimRaporu rapor)
         {
-            _context.GelisimRaporlari.Add(gelisimRaporu);
+            _context.GelisimRaporlari.Add(rapor);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetGelisimRaporu", new { id = gelisimRaporu.Id }, gelisimRaporu);
+            return CreatedAtAction(nameof(Get), new { id = rapor.Id }, rapor);
         }
 
-        // PUT: api/GelisimRaporu/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutGelisimRaporu(int id, GelisimRaporu gelisimRaporu)
+        public async Task<IActionResult> Update(int id, GelisimRaporu rapor)
         {
-            if (id != gelisimRaporu.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(gelisimRaporu).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!GelisimRaporuExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // DELETE: api/GelisimRaporu/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteGelisimRaporu(int id)
-        {
-            var gelisimRaporu = await _context.GelisimRaporlari.FindAsync(id);
-            if (gelisimRaporu == null)
-            {
-                return NotFound();
-            }
-
-            _context.GelisimRaporlari.Remove(gelisimRaporu);
+            if (id != rapor.Id) return BadRequest();
+            _context.Entry(rapor).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-
             return NoContent();
         }
 
-        private bool GelisimRaporuExists(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
-            return _context.GelisimRaporlari.Any(e => e.Id == id);
+            var rapor = await _context.GelisimRaporlari.FindAsync(id);
+            if (rapor == null) return NotFound();
+            _context.GelisimRaporlari.Remove(rapor);
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
     }
 } 

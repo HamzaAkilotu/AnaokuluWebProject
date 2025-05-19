@@ -1,103 +1,59 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using AnaOkuluYS.Data;
 using AnaOkuluYS.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace AnaOkuluYS.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class OgrenciController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-
         public OgrenciController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Ogrenci
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Ogrenci>>> GetOgrenciler()
+        public async Task<IActionResult> GetAll()
         {
-            return await _context.Ogrenciler.ToListAsync();
+            return Ok(await _context.Ogrenciler.ToListAsync());
         }
 
-        // GET: api/Ogrenci/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Ogrenci>> GetOgrenci(int id)
+        public async Task<IActionResult> Get(int id)
         {
             var ogrenci = await _context.Ogrenciler.FindAsync(id);
-
-            if (ogrenci == null)
-            {
-                return NotFound();
-            }
-
-            return ogrenci;
+            if (ogrenci == null) return NotFound();
+            return Ok(ogrenci);
         }
 
-        // POST: api/Ogrenci
         [HttpPost]
-        public async Task<ActionResult<Ogrenci>> PostOgrenci(Ogrenci ogrenci)
+        public async Task<IActionResult> Create(Ogrenci ogrenci)
         {
             _context.Ogrenciler.Add(ogrenci);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetOgrenci", new { id = ogrenci.Id }, ogrenci);
+            return CreatedAtAction(nameof(Get), new { id = ogrenci.Id }, ogrenci);
         }
 
-        // PUT: api/Ogrenci/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOgrenci(int id, Ogrenci ogrenci)
+        public async Task<IActionResult> Update(int id, Ogrenci ogrenci)
         {
-            if (id != ogrenci.Id)
-            {
-                return BadRequest();
-            }
-
+            if (id != ogrenci.Id) return BadRequest();
             _context.Entry(ogrenci).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OgrenciExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
-        // DELETE: api/Ogrenci/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOgrenci(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var ogrenci = await _context.Ogrenciler.FindAsync(id);
-            if (ogrenci == null)
-            {
-                return NotFound();
-            }
-
+            if (ogrenci == null) return NotFound();
             _context.Ogrenciler.Remove(ogrenci);
             await _context.SaveChangesAsync();
-
             return NoContent();
-        }
-
-        private bool OgrenciExists(int id)
-        {
-            return _context.Ogrenciler.Any(e => e.Id == id);
         }
     }
 } 

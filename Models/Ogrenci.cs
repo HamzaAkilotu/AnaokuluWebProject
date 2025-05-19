@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace AnaOkuluYS.Models
 {
@@ -14,9 +13,5 @@ namespace AnaOkuluYS.Models
         public string VeliEmail { get; set; }
         public DateTime KayitTarihi { get; set; }
         public bool Aktif { get; set; }
-        
-        // İlişkiler
-        public ICollection<GelisimRaporu> GelisimRaporlari { get; set; }
-        public ICollection<EtkinlikKatilim> EtkinlikKatilimlari { get; set; }
     }
 } 

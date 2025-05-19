@@ -6,11 +6,68 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AnaOkuluYS.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class TemizIliskiler : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "BlogYazilari",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Baslik = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Icerik = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    YayinTarihi = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Yazar = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ResimUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Aktif = table.Column<bool>(type: "bit", nullable: false),
+                    Kategori = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Etiketler = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BlogYazilari", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Duyurular",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Baslik = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Icerik = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    YayinTarihi = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SonGecerlilikTarihi = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Onemli = table.Column<bool>(type: "bit", nullable: false),
+                    Aktif = table.Column<bool>(type: "bit", nullable: false),
+                    ResimUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Duyurular", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Menuler",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Tarih = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SabahKahvaltisi = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    OgleYemegi = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    IkindiKahvaltisi = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Notlar = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Aktif = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Menuler", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Ogrenciler",
                 columns: table => new
@@ -71,7 +128,7 @@ namespace AnaOkuluYS.Migrations
                         column: x => x.OgretmenId,
                         principalTable: "Ogretmenler",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -107,7 +164,7 @@ namespace AnaOkuluYS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EtkinlikKatilimlari",
+                name: "EtkinlikKatilimlar",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -119,29 +176,29 @@ namespace AnaOkuluYS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EtkinlikKatilimlari", x => x.Id);
+                    table.PrimaryKey("PK_EtkinlikKatilimlar", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EtkinlikKatilimlari_Etkinlikler_EtkinlikId",
+                        name: "FK_EtkinlikKatilimlar_Etkinlikler_EtkinlikId",
                         column: x => x.EtkinlikId,
                         principalTable: "Etkinlikler",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EtkinlikKatilimlari_Ogrenciler_OgrenciId",
+                        name: "FK_EtkinlikKatilimlar_Ogrenciler_OgrenciId",
                         column: x => x.OgrenciId,
                         principalTable: "Ogrenciler",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_EtkinlikKatilimlari_EtkinlikId",
-                table: "EtkinlikKatilimlari",
+                name: "IX_EtkinlikKatilimlar_EtkinlikId",
+                table: "EtkinlikKatilimlar",
                 column: "EtkinlikId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EtkinlikKatilimlari_OgrenciId",
-                table: "EtkinlikKatilimlari",
+                name: "IX_EtkinlikKatilimlar_OgrenciId",
+                table: "EtkinlikKatilimlar",
                 column: "OgrenciId");
 
             migrationBuilder.CreateIndex(
@@ -164,10 +221,19 @@ namespace AnaOkuluYS.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "EtkinlikKatilimlari");
+                name: "BlogYazilari");
+
+            migrationBuilder.DropTable(
+                name: "Duyurular");
+
+            migrationBuilder.DropTable(
+                name: "EtkinlikKatilimlar");
 
             migrationBuilder.DropTable(
                 name: "GelisimRaporlari");
+
+            migrationBuilder.DropTable(
+                name: "Menuler");
 
             migrationBuilder.DropTable(
                 name: "Etkinlikler");

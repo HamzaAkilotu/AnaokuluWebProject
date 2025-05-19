@@ -1,103 +1,59 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using AnaOkuluYS.Data;
 using AnaOkuluYS.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace AnaOkuluYS.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class OgretmenController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-
         public OgretmenController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Ogretmen
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Ogretmen>>> GetOgretmenler()
+        public async Task<IActionResult> GetAll()
         {
-            return await _context.Ogretmenler.ToListAsync();
+            return Ok(await _context.Ogretmenler.ToListAsync());
         }
 
-        // GET: api/Ogretmen/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Ogretmen>> GetOgretmen(int id)
+        public async Task<IActionResult> Get(int id)
         {
             var ogretmen = await _context.Ogretmenler.FindAsync(id);
-
-            if (ogretmen == null)
-            {
-                return NotFound();
-            }
-
-            return ogretmen;
+            if (ogretmen == null) return NotFound();
+            return Ok(ogretmen);
         }
 
-        // POST: api/Ogretmen
         [HttpPost]
-        public async Task<ActionResult<Ogretmen>> PostOgretmen(Ogretmen ogretmen)
+        public async Task<IActionResult> Create(Ogretmen ogretmen)
         {
             _context.Ogretmenler.Add(ogretmen);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetOgretmen", new { id = ogretmen.Id }, ogretmen);
+            return CreatedAtAction(nameof(Get), new { id = ogretmen.Id }, ogretmen);
         }
 
-        // PUT: api/Ogretmen/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOgretmen(int id, Ogretmen ogretmen)
+        public async Task<IActionResult> Update(int id, Ogretmen ogretmen)
         {
-            if (id != ogretmen.Id)
-            {
-                return BadRequest();
-            }
-
+            if (id != ogretmen.Id) return BadRequest();
             _context.Entry(ogretmen).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OgretmenExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
-        // DELETE: api/Ogretmen/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOgretmen(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var ogretmen = await _context.Ogretmenler.FindAsync(id);
-            if (ogretmen == null)
-            {
-                return NotFound();
-            }
-
+            if (ogretmen == null) return NotFound();
             _context.Ogretmenler.Remove(ogretmen);
             await _context.SaveChangesAsync();
-
             return NoContent();
-        }
-
-        private bool OgretmenExists(int id)
-        {
-            return _context.Ogretmenler.Any(e => e.Id == id);
         }
     }
 } 
