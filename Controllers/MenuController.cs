@@ -55,5 +55,26 @@ namespace AnaOkuluYS.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
+
+        [HttpGet("HaftalikYemekListesi")]
+        public async Task<IActionResult> HaftalikYemekListesi()
+        {
+            var gunler = new[] { "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma" };
+            var haftalik = new Dictionary<string, string>();
+            var menuler = await _context.Menuler
+                .Where(m => m.Aktif)
+                .OrderBy(m => m.Tarih)
+                .ToListAsync();
+
+            foreach (var menu in menuler)
+            {
+                var gun = menu.Tarih.ToString("dddd", new System.Globalization.CultureInfo("tr-TR"));
+                if (gunler.Contains(gun))
+                {
+                    haftalik[gun] = $"Sabah: {menu.SabahKahvaltisi}<br>Öğle: {menu.OgleYemegi}<br>İkindi: {menu.IkindiKahvaltisi}<br>Not: {menu.Notlar}";
+                }
+            }
+            return Ok(haftalik);
+        }
     }
 } 

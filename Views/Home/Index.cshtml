@@ -282,9 +282,10 @@
     <!-- Yemek Listesi Önizleme -->
     <!-- Bu bölüm kaldırıldı -->
 
-    <!-- Duyurular Bölümü (YENİ YERDE) -->
-    <section class="announcements-section" style="margin-top:48px; margin-bottom:48px;">
-        <div style="max-width:1100px; margin:0 auto; background:#fff; border-radius:18px; box-shadow:0 2px 12px #80002018; padding:40px 24px 28px 24px;">
+    <!-- Duyurular ve Etkinlikler Bölümü Yan Yana -->
+    <section class="duyuru-etkinlik-row" style="display:flex; gap:64px; justify-content:center; align-items:flex-start; max-width:1100px; margin:48px auto 48px auto;">
+        <!-- Duyurular -->
+        <div style="flex:1; background:#fff; border-radius:18px; box-shadow:0 2px 12px #80002018; padding:40px 24px 28px 24px; min-width:0;">
             <h1 style="font-size:2.3rem; font-weight:800; color:#800020; margin-bottom:24px; text-align:left; font-family:'Fredoka One', 'Comic Neue', Arial, sans-serif;">Duyurular</h1>
             <table id="duyurularTable" style="width:100%; border-collapse:collapse; background:#fff; color:#800020; font-size:1.13rem; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px #80002011;">
                 <thead>
@@ -292,6 +293,7 @@
                         <th style="padding:16px 18px; border-bottom:1.5px solid #e0b7c6; font-weight:700; font-size:1.15rem; text-align:left;">Tarih</th>
                         <th style="padding:16px 18px; border-bottom:1.5px solid #e0b7c6; font-weight:700; font-size:1.15rem; text-align:left;">Duyuru Başlığı</th>
                         <th style="padding:16px 18px; border-bottom:1.5px solid #e0b7c6; font-weight:700; font-size:1.15rem; text-align:left;">Kısa Açıklama</th>
+                        <th style="padding:16px 18px; border-bottom:1.5px solid #e0b7c6; font-weight:700; font-size:1.15rem; text-align:left;">Resim</th>
                     </tr>
                 </thead>
                 <tbody id="duyurularContainer">
@@ -299,6 +301,24 @@
                 </tbody>
             </table>
             <div style="margin-top:18px; font-size:0.98rem; color:#800020; opacity:0.75; font-style:italic;">_Okulumuzdaki güncel duyuruları burada bulabilirsiniz. Takipte kalın!_</div>
+        </div>
+        <!-- Etkinlikler -->
+        <div style="flex:1; background:#fff; border-radius:18px; box-shadow:0 2px 12px #80002018; padding:40px 24px 28px 24px; min-width:0;">
+            <h1 style="font-size:2.3rem; font-weight:800; color:#800020; margin-bottom:24px; text-align:left; font-family:'Fredoka One', 'Comic Neue', Arial, sans-serif;">Etkinlikler</h1>
+            <table id="etkinliklerTable" style="width:100%; border-collapse:collapse; background:#fff; color:#800020; font-size:1.13rem; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px #80002011;">
+                <thead>
+                    <tr style="background:#f8e6ef;">
+                        <th style="padding:16px 18px; border-bottom:1.5px solid #e0b7c6; font-weight:700; font-size:1.15rem; text-align:left;">Tarih</th>
+                        <th style="padding:16px 18px; border-bottom:1.5px solid #e0b7c6; font-weight:700; font-size:1.15rem; text-align:left;">Etkinlik Adı</th>
+                        <th style="padding:16px 18px; border-bottom:1.5px solid #e0b7c6; font-weight:700; font-size:1.15rem; text-align:left;">Açıklama</th>
+                        <th style="padding:16px 18px; border-bottom:1.5px solid #e0b7c6; font-weight:700; font-size:1.15rem; text-align:left;">Konum</th>
+                    </tr>
+                </thead>
+                <tbody id="etkinliklerContainer">
+                    <!-- Etkinlikler API'den dinamik olarak yüklenecek -->
+                </tbody>
+            </table>
+            <div style="margin-top:18px; font-size:0.98rem; color:#800020; opacity:0.75; font-style:italic;">_Yaklaşan etkinliklerimizi kaçırmayın!_</div>
         </div>
     </section>
 
@@ -333,75 +353,76 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
 <script>
-let current = 1;
-const total = 3;
-function updateHeroBg() {
-    document.querySelector('.hero-bg-1').style.opacity = (current === 1) ? '1' : '0';
-    document.querySelector('.hero-bg-2').style.opacity = (current === 2) ? '1' : '0';
-    document.querySelector('.hero-bg-3').style.opacity = (current === 3) ? '1' : '0';
-}
-updateHeroBg();
-setInterval(() => {
-    current = current % total + 1;
-    updateHeroBg();
-}, 5000);
-
-// Duyuruları API'den çekip tabloya doldur
-function loadDuyurular() {
-    fetch('/api/Duyuru')
-        .then(response => response.json())
-        .then(data => {
-            const container = document.getElementById('duyurularContainer');
-            container.innerHTML = data.map(duyuru => `
-                <tr>
-                    <td style='padding:14px 18px; border-bottom:1px solid #f3dbe6; font-weight:600;'>${new Date(duyuru.yayinTarihi || duyuru.YayinTarihi).toLocaleDateString('tr-TR', { day: '2-digit', month: 'long' })}</td>
-                    <td style='padding:14px 18px; border-bottom:1px solid #f3dbe6;'>${duyuru.baslik || duyuru.Baslik}</td>
-                    <td style='padding:14px 18px; border-bottom:1px solid #f3dbe6;'>${(duyuru.icerik || duyuru.Icerik).length > 40 ? (duyuru.icerik || duyuru.Icerik).substring(0, 40) + '...' : (duyuru.icerik || duyuru.Icerik)}</td>
-                </tr>
-            `).join('');
-        })
-        .catch(() => {
-            document.getElementById('duyurularContainer').innerHTML = '<tr><td colspan="3" style="padding:18px; text-align:center; color:#800020;">Duyurular yüklenemedi.</td></tr>';
-        });
-}
-document.addEventListener('DOMContentLoaded', () => {
-    loadDuyurular();
-});
-</script>
-
 @section Scripts {
     <script>
-        $(document).ready(function() {
-            // Duyuruları yükle
-            $.get('/api/DuyuruApi', function(duyurular) {
-                var duyuruHtml = '';
-                duyurular.forEach(function(duyuru) {
-                    duyuruHtml += `
-                        <div class="duyuru-item">
-                            <h4>${duyuru.Baslik}</h4>
-                            <p>${duyuru.Icerik}</p>
-                            <small>${new Date(duyuru.YayinTarihi).toLocaleDateString('tr-TR')}</small>
-                        </div>
-                    `;
-                });
-                $('#duyurular-container').html(duyuruHtml);
-            });
+        // HERO BG fonksiyonunu yoruma al
+        /*
+        let current = 1;
+        const total = 3;
+        function updateHeroBg() {
+            document.querySelector('.hero-bg-1').style.opacity = (current === 1) ? '1' : '0';
+            document.querySelector('.hero-bg-2').style.opacity = (current === 2) ? '1' : '0';
+            document.querySelector('.hero-bg-3').style.opacity = (current === 3) ? '1' : '0';
+        }
+        updateHeroBg();
+        setInterval(() => {
+            current = current % total + 1;
+            updateHeroBg();
+        }, 5000);
+        */
 
-            // Galeri resimlerini yükle
-            $.get('/api/GaleriApi', function(galeri) {
-                var galeriHtml = '';
-                galeri.forEach(function(resim) {
-                    galeriHtml += `
-                        <div class="gallery-item">
-                            <img src="${resim.ResimYolu}" alt="${resim.Aciklama}" class="img-fluid">
-                            <div class="gallery-overlay">
-                                <p>${resim.Aciklama}</p>
-                            </div>
-                        </div>
-                    `;
+        // Duyuruları API'den çekip tabloya doldur
+        function loadDuyurular() {
+            fetch('/api/Duyuru')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('duyurularContainer');
+                    if (!Array.isArray(data) || data.length === 0) {
+                        container.innerHTML = '<tr><td colspan="4" style="padding:18px; text-align:center; color:#800020;">Henüz duyuru eklenmedi.</td></tr>';
+                        return;
+                    }
+                    container.innerHTML = data.map(duyuru => `
+                        <tr>
+                            <td style='padding:14px 18px; border-bottom:1px solid #f3dbe6; font-weight:600;'>${new Date(duyuru.yayinTarihi || duyuru.YayinTarihi).toLocaleDateString('tr-TR', { day: '2-digit', month: 'long' })}</td>
+                            <td style='padding:14px 18px; border-bottom:1px solid #f3dbe6;'>${duyuru.baslik || duyuru.Baslik}</td>
+                            <td style='padding:14px 18px; border-bottom:1px solid #f3dbe6;'>${(duyuru.icerik || duyuru.Icerik).length > 40 ? (duyuru.icerik || duyuru.Icerik).substring(0, 40) + '...' : (duyuru.icerik || duyuru.Icerik)}</td>
+                            <td style='padding:14px 18px; border-bottom:1px solid #f3dbe6;'>${(duyuru.resimUrl || duyuru.ResimUrl) ? `<img src='${duyuru.resimUrl || duyuru.ResimUrl}' alt='Duyuru Resmi' style='max-width:60px; max-height:60px;'>` : '-'}</td>
+                        </tr>
+                    `).join('');
+                })
+                .catch(() => {
+                    document.getElementById('duyurularContainer').innerHTML = '<tr><td colspan="4" style="padding:18px; text-align:center; color:#800020;">Duyurular yüklenemedi.</td></tr>';
                 });
-                $('#gallery-container').html(galeriHtml);
-            });
+        }
+
+        // Etkinlikleri API'den çekip tabloya doldur
+        function loadEtkinlikler() {
+            fetch('/api/Etkinlik')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('etkinliklerContainer');
+                    const aktifEtkinlikler = data.filter(e => e.aktif === true || e.Aktif === true);
+                    if (!Array.isArray(data) || aktifEtkinlikler.length === 0) {
+                        container.innerHTML = '<tr><td colspan="4" style="padding:18px; text-align:center; color:#800020;">Henüz etkinlik eklenmedi.</td></tr>';
+                        return;
+                    }
+                    container.innerHTML = aktifEtkinlikler.map(etkinlik => `
+                        <tr>
+                            <td style='padding:14px 18px; border-bottom:1px solid #f3dbe6; font-weight:600;'>${new Date(etkinlik.tarih || etkinlik.Tarih).toLocaleDateString('tr-TR', { day: '2-digit', month: 'long' })}</td>
+                            <td style='padding:14px 18px; border-bottom:1px solid #f3dbe6;'>${etkinlik.baslik || etkinlik.Baslik}</td>
+                            <td style='padding:14px 18px; border-bottom:1px solid #f3dbe6;'>${(etkinlik.aciklama || etkinlik.Aciklama).length > 40 ? (etkinlik.aciklama || etkinlik.Aciklama).substring(0, 40) + '...' : (etkinlik.aciklama || etkinlik.Aciklama)}</td>
+                            <td style='padding:14px 18px; border-bottom:1px solid #f3dbe6;'>${etkinlik.konum || etkinlik.Konum || '-'}</td>
+                        </tr>
+                    `).join('');
+                })
+                .catch(() => {
+                    document.getElementById('etkinliklerContainer').innerHTML = '<tr><td colspan="4" style="padding:18px; text-align:center; color:#800020;">Etkinlikler yüklenemedi.</td></tr>';
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDuyurular();
+            loadEtkinlikler();
         });
     </script>
 }

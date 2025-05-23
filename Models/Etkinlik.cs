@@ -8,8 +8,7 @@ namespace AnaOkuluYS.Models
         public string Baslik { get; set; } = string.Empty;
         public string Aciklama { get; set; } = string.Empty;
         public DateTime Tarih { get; set; }
+        public bool Aktif { get; set; } = true;
         public string Konum { get; set; } = string.Empty;
-        public bool Aktif { get; set; }
-        // Sadece tanıtım amaçlı alanlar kaldı
     }
 } 

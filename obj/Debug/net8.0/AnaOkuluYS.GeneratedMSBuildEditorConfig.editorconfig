@@ -32,22 +32,6 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/EtkinlikTakvimi/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXRraW5saWtUYWt2aW1pXENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/EtkinlikTakvimi/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXRraW5saWtUYWt2aW1pXERldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/EtkinlikTakvimi/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXRraW5saWtUYWt2aW1pXEVkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/EtkinlikTakvimi/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXRraW5saWtUYWt2aW1pXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/BransDerslerimiz.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCcmFuc0RlcnNsZXJpbWl6LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -94,10 +78,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/RehberlikDestegi.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWhiZXJsaWtEZXN0ZWdpLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/YaptigimizEtkinlikler.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxZYXB0aWdpbWl6RXRraW5saWtsZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/_KurumsalPartial.cshtml]

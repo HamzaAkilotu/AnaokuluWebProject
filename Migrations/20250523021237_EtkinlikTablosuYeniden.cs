@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AnaOkuluYS.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class EtkinlikTablosuYeniden : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -45,26 +45,6 @@ namespace AnaOkuluYS.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Etkinlikler", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EtkinlikTakvimi",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Baslik = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Aciklama = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BaslangicTarihi = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BitisTarihi = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Renk = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OlusturulmaTarihi = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GuncellenmeTarihi = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AktifMi = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EtkinlikTakvimi", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -137,53 +117,6 @@ namespace AnaOkuluYS.Migrations
                 {
                     table.PrimaryKey("PK_Oneriler", x => x.Id);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "SSS",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Soru = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Cevap = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    GuncellemeTarihi = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SSS", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Ulasim",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Baslik = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Aciklama = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GorselUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GuncellemeTarihi = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ulasim", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "VizyonMisyon",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Vizyon = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Misyon = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Ekstra = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GuncellemeTarihi = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_VizyonMisyon", x => x.Id);
-                });
         }
 
         /// <inheritdoc />
@@ -196,9 +129,6 @@ namespace AnaOkuluYS.Migrations
                 name: "Etkinlikler");
 
             migrationBuilder.DropTable(
-                name: "EtkinlikTakvimi");
-
-            migrationBuilder.DropTable(
                 name: "Galeri");
 
             migrationBuilder.DropTable(
@@ -209,15 +139,6 @@ namespace AnaOkuluYS.Migrations
 
             migrationBuilder.DropTable(
                 name: "Oneriler");
-
-            migrationBuilder.DropTable(
-                name: "SSS");
-
-            migrationBuilder.DropTable(
-                name: "Ulasim");
-
-            migrationBuilder.DropTable(
-                name: "VizyonMisyon");
         }
     }
 }

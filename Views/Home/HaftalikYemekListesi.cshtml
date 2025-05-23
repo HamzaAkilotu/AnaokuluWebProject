@@ -31,7 +31,7 @@
 @section Scripts {
 <script>
 // API'den yemek listesini çekip tabloya doldur
-fetch('/api/YemekListesi')
+fetch('/api/Menu/HaftalikYemekListesi')
     .then(res => res.json())
     .then(data => {
         const gunler = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma'];

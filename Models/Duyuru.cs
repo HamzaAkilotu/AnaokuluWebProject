@@ -19,10 +19,6 @@ namespace AnaOkuluYS.Models
 
         public DateTime? SonGecerlilikTarihi { get; set; }
 
-        [Required]
-        public bool Onemli { get; set; }
-
-        [Required]
         public bool Aktif { get; set; } = true;
 
         public string? ResimUrl { get; set; }
