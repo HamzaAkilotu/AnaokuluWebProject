@@ -12,17 +12,17 @@ namespace AnaOkuluYS.Models
 
         [Required]
         [MaxLength(100)]
-        public string SabahKahvaltisi { get; set; }
+        public string SabahKahvaltisi { get; set; } = string.Empty;
 
         [Required]
         [MaxLength(100)]
-        public string OgleYemegi { get; set; }
+        public string OgleYemegi { get; set; } = string.Empty;
 
         [Required]
         [MaxLength(100)]
-        public string IkindiKahvaltisi { get; set; }
+        public string IkindiKahvaltisi { get; set; } = string.Empty;
 
-        public string Notlar { get; set; }
+        public string Notlar { get; set; } = string.Empty;
 
         [Required]
         public bool Aktif { get; set; } = true;

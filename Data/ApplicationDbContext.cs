@@ -10,45 +10,22 @@ namespace AnaOkuluYS.Data
         {
         }
 
-        public DbSet<Ogrenci> Ogrenciler { get; set; }
-        public DbSet<Ogretmen> Ogretmenler { get; set; }
-        public DbSet<Etkinlik> Etkinlikler { get; set; }
-        public DbSet<EtkinlikKatilim> EtkinlikKatilimlar { get; set; }
-        public DbSet<GelisimRaporu> GelisimRaporlari { get; set; }
-        public DbSet<Menu> Menuler { get; set; }
+        public DbSet<EtkinlikTakvimi> EtkinlikTakvimi { get; set; }
+        public DbSet<Galeri> Galeri { get; set; }
+        public DbSet<Iletisim> Iletisim { get; set; }
         public DbSet<Duyuru> Duyurular { get; set; }
-        public DbSet<Blog> BlogYazilari { get; set; }
+        public DbSet<Menu> Menuler { get; set; }
+        public DbSet<Oneri> Oneriler { get; set; }
+        public DbSet<SSS> SSS { get; set; }
+        public DbSet<Ulasim> Ulasim { get; set; }
+        public DbSet<VizyonMisyon> VizyonMisyon { get; set; }
+        public DbSet<Etkinlik> Etkinlikler { get; set; }
+        // Ekstra: Galeri, SSS, Ulasim, Iletisim, VizyonMisyon modelleri eklenecek
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // Etkinlik - Öğretmen ilişkisi
-            modelBuilder.Entity<Etkinlik>()
-                .HasOne(e => e.Ogretmen)
-                .WithMany(o => o.Etkinlikler)
-                .HasForeignKey(e => e.OgretmenId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            // Etkinlik Katılım ilişkileri
-            modelBuilder.Entity<EtkinlikKatilim>()
-                .HasOne(ek => ek.Etkinlik)
-                .WithMany(e => e.Katilimlar)
-                .HasForeignKey(ek => ek.EtkinlikId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<EtkinlikKatilim>()
-                .HasOne(ek => ek.Ogrenci)
-                .WithMany()
-                .HasForeignKey(ek => ek.OgrenciId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            // Gelişim Raporu - Öğrenci ilişkisi
-            modelBuilder.Entity<GelisimRaporu>()
-                .HasOne(gr => gr.Ogrenci)
-                .WithMany()
-                .HasForeignKey(gr => gr.OgrenciId)
-                .OnDelete(DeleteBehavior.Cascade);
+            // Sadece kalan modellerin ilişkileri burada tanımlanacak (gerekirse)
         }
     }
 } 

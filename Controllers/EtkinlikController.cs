@@ -18,13 +18,13 @@ namespace AnaOkuluYS.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _context.Etkinlikler.Include(e => e.Ogretmen).ToListAsync());
+            return Ok(await _context.Etkinlikler.ToListAsync());
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var etkinlik = await _context.Etkinlikler.Include(e => e.Ogretmen).FirstOrDefaultAsync(e => e.Id == id);
+            var etkinlik = await _context.Etkinlikler.FirstOrDefaultAsync(e => e.Id == id);
             if (etkinlik == null) return NotFound();
             return Ok(etkinlik);
         }

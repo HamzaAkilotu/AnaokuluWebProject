@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etkinlikler | Bilge Kaşifler Anaokulu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .etkinlik-card {
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .etkinlik-header {
+            background: #0d6efd;
+            color: white;
+            padding: 1rem;
+            border-radius: 10px 10px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/index.html">
+                <img src="/logo.png" alt="Bilge Kaşifler Anaokulu Logo" style="height:40px;margin-right:10px;">
+                <span>Bilge Kaşifler Anaokulu</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/index.html#hakkimizda">Hakkımızda</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/etkinlikler.html">Etkinlikler</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/menu.html">Haftalık Menü</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/index.html#blog">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/index.html#duyurular">Duyurular</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/index.html#oneri">Veli Öneri</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-light text-primary ms-2" href="/admin">Admin Giriş</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <h2 class="text-center mb-5">Etkinlikler</h2>
+        <div id="etkinliklerListesi" class="row"></div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Bilge Kaşifler Anaokulu</h5>
+                    <p>Çocuklarınızın geleceği için en iyi seçim.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5>Sosyal Medya</h5>
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Etkinlikleri API'den çek
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/api/Etkinlik')
+                .then(response => response.json())
+                .then(etkinlikler => {
+                    const etkinliklerListesi = document.getElementById('etkinliklerListesi');
+                    if (etkinlikler.length === 0) {
+                        etkinliklerListesi.innerHTML = '<div class="alert alert-info">Henüz etkinlik yok.</div>';
+                    } else {
+                        etkinlikler.forEach(etkinlik => {
+                            etkinliklerListesi.innerHTML += `
+                                <div class="col-md-6">
+                                    <div class="card etkinlik-card">
+                                        <div class="etkinlik-header">
+                                            <h5 class="mb-0">${etkinlik.baslik}</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">${etkinlik.aciklama}</p>
+                                            <p class="mb-1"><i class="fas fa-calendar-alt"></i> ${new Date(etkinlik.tarih).toLocaleDateString()}</p>
+                                            <p class="mb-1"><i class="fas fa-map-marker-alt"></i> ${etkinlik.konum}</p>
+                                            <p class="mb-0"><i class="fas fa-user"></i> Sorumlu Öğretmen: ${etkinlik.ogretmen ? etkinlik.ogretmen.ad + ' ' + etkinlik.ogretmen.soyad : '-'}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    }
+                });
+        });
+    </script>
+</body>
+</html> 

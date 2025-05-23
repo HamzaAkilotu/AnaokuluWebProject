@@ -22,50 +22,6 @@ namespace AnaOkuluYS.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AnaOkuluYS.Models.Blog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Aktif")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Baslik")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Etiketler")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Icerik")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Kategori")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("ResimUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("YayinTarihi")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Yazar")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BlogYazilari");
-                });
-
             modelBuilder.Entity("AnaOkuluYS.Models.Duyuru", b =>
                 {
                     b.Property<int>("Id")
@@ -126,20 +82,15 @@ namespace AnaOkuluYS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OgretmenId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Tarih")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OgretmenId");
 
                     b.ToTable("Etkinlikler");
                 });
 
-            modelBuilder.Entity("AnaOkuluYS.Models.EtkinlikKatilim", b =>
+            modelBuilder.Entity("AnaOkuluYS.Models.EtkinlikTakvimi", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -147,29 +98,39 @@ namespace AnaOkuluYS.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("EtkinlikId")
-                        .HasColumnType("int");
+                    b.Property<string>("Aciklama")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("KatilimDurumu")
+                    b.Property<bool>("AktifMi")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Notlar")
+                    b.Property<DateTime>("BaslangicTarihi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Baslik")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OgrenciId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("BitisTarihi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("GuncellenmeTarihi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("OlusturulmaTarihi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Renk")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EtkinlikId");
-
-                    b.HasIndex("OgrenciId");
-
-                    b.ToTable("EtkinlikKatilimlar");
+                    b.ToTable("EtkinlikTakvimi");
                 });
 
-            modelBuilder.Entity("AnaOkuluYS.Models.GelisimRaporu", b =>
+            modelBuilder.Entity("AnaOkuluYS.Models.Galeri", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -177,42 +138,69 @@ namespace AnaOkuluYS.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("DuygusalGelisim")
+                    b.Property<string>("Aciklama")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("AktifMi")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Baslik")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FizikselGelisim")
+                    b.Property<string>("ResimYolu")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("GenelDegerlendirme")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OgrenciId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OgretmenId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SosyalGelisim")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Tarih")
+                    b.Property<DateTime>("YuklemeTarihi")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("ZihinselGelisim")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OgrenciId");
+                    b.ToTable("Galeri");
+                });
 
-                    b.HasIndex("OgretmenId");
+            modelBuilder.Entity("AnaOkuluYS.Models.Iletisim", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.ToTable("GelisimRaporlari");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdSoyad")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("GonderimTarihi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Konu")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Mesaj")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Okundu")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Telefon")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Iletisim");
                 });
 
             modelBuilder.Entity("AnaOkuluYS.Models.Menu", b =>
@@ -253,7 +241,7 @@ namespace AnaOkuluYS.Migrations
                     b.ToTable("Menuler");
                 });
 
-            modelBuilder.Entity("AnaOkuluYS.Models.Ogrenci", b =>
+            modelBuilder.Entity("AnaOkuluYS.Models.Oneri", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -261,41 +249,33 @@ namespace AnaOkuluYS.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Ad")
+                    b.Property<string>("Mesaj")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
-                    b.Property<bool>("Aktif")
+                    b.Property<bool>("Okundu")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("DogumTarihi")
+                    b.Property<DateTime>("Tarih")
                         .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("KayitTarihi")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Soyad")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("VeliAdi")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("VeliEmail")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("VeliTelefon")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ogrenciler");
+                    b.ToTable("Oneriler");
                 });
 
-            modelBuilder.Entity("AnaOkuluYS.Models.Ogretmen", b =>
+            modelBuilder.Entity("AnaOkuluYS.Models.SSS", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -303,96 +283,77 @@ namespace AnaOkuluYS.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Ad")
+                    b.Property<string>("Cevap")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
-                    b.Property<bool>("Aktif")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("IseBaslamaTarihi")
+                    b.Property<DateTime>("GuncellemeTarihi")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Soyad")
+                    b.Property<string>("Soru")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SSS");
+                });
+
+            modelBuilder.Entity("AnaOkuluYS.Models.Ulasim", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Aciklama")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Telefon")
+                    b.Property<string>("Baslik")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("GorselUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("GuncellemeTarihi")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ulasim");
+                });
+
+            modelBuilder.Entity("AnaOkuluYS.Models.VizyonMisyon", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Ekstra")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("GuncellemeTarihi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Misyon")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UzmanlikAlani")
+                    b.Property<string>("Vizyon")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ogretmenler");
-                });
-
-            modelBuilder.Entity("AnaOkuluYS.Models.Etkinlik", b =>
-                {
-                    b.HasOne("AnaOkuluYS.Models.Ogretmen", "Ogretmen")
-                        .WithMany("Etkinlikler")
-                        .HasForeignKey("OgretmenId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Ogretmen");
-                });
-
-            modelBuilder.Entity("AnaOkuluYS.Models.EtkinlikKatilim", b =>
-                {
-                    b.HasOne("AnaOkuluYS.Models.Etkinlik", "Etkinlik")
-                        .WithMany("Katilimlar")
-                        .HasForeignKey("EtkinlikId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AnaOkuluYS.Models.Ogrenci", "Ogrenci")
-                        .WithMany()
-                        .HasForeignKey("OgrenciId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Etkinlik");
-
-                    b.Navigation("Ogrenci");
-                });
-
-            modelBuilder.Entity("AnaOkuluYS.Models.GelisimRaporu", b =>
-                {
-                    b.HasOne("AnaOkuluYS.Models.Ogrenci", "Ogrenci")
-                        .WithMany()
-                        .HasForeignKey("OgrenciId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AnaOkuluYS.Models.Ogretmen", "Ogretmen")
-                        .WithMany("GelisimRaporlari")
-                        .HasForeignKey("OgretmenId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Ogrenci");
-
-                    b.Navigation("Ogretmen");
-                });
-
-            modelBuilder.Entity("AnaOkuluYS.Models.Etkinlik", b =>
-                {
-                    b.Navigation("Katilimlar");
-                });
-
-            modelBuilder.Entity("AnaOkuluYS.Models.Ogretmen", b =>
-                {
-                    b.Navigation("Etkinlikler");
-
-                    b.Navigation("GelisimRaporlari");
+                    b.ToTable("VizyonMisyon");
                 });
 #pragma warning restore 612, 618
         }

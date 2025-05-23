@@ -1,0 +1,64 @@
+@{
+    ViewData["Title"] = "İletişim";
+}
+
+<!-- Google Fonts: Comic Neue ve Fredoka One -->
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fredoka+One&display=swap" rel="stylesheet">
+
+<div style="background:#fff; min-height:100vh; width:100vw; font-family:'Comic Neue', 'Fredoka One', Arial, sans-serif; color:#800020;">
+    <div style="max-width:1100px; margin:0 auto; padding:48px 16px 0 16px;">
+        <h1 style="text-align:center; font-size:2.7rem; font-weight:800; letter-spacing:1px; color:#800020; margin-bottom:8px; font-family:'Fredoka One', 'Comic Neue', Arial, sans-serif;">İletişim</h1>
+        <div style="text-align:center; font-size:1.1rem; opacity:0.85; color:#800020; margin-bottom:48px; font-family:'Comic Neue', 'Fredoka One', Arial, sans-serif;">Anasayfa / İletişim</div>
+        <div style="background:#800020; border-radius:20px; box-shadow:0 2px 16px #80002033; padding:36px 32px; display:flex; align-items:flex-start; gap:24px; margin-bottom:32px; justify-content:flex-start;">
+            <div style="flex:none; min-width:320px; color:#fff;">
+                <div style="font-size:1.15rem; margin-bottom:18px; display:flex; align-items:center;">
+                    <span style="font-weight:700; color:#fff; margin-right:8px; font-size:1.1rem;">Adres:</span>
+                    <span style="font-weight:600; color:#fff; font-size:1.08rem;">Cumhuriyet, 158. Sk. no:18, 23170 Elazığ Merkez/Elazığ</span>
+                </div>
+                <div style="font-size:1.08rem; margin-bottom:22px; display:flex; align-items:center;">
+                    <span style="font-weight:700; color:#fff; margin-right:8px;">Telefon:</span>
+                    <span style="font-weight:600; color:#fff;">05073104117</span>
+                </div>
+                <div style="font-size:1.08rem; display:flex; align-items:center;">
+                    <span style="font-weight:700; color:#fff; margin-right:8px;">Instagram:</span>
+                    <span style="font-weight:600; color:#fff;">&#64;bilgekasifleranaokulu</span>
+                </div>
+            </div>
+            <div style="min-width:220px; max-width:220px;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3132.234964295028!2d39.24623231531844!3d38.6744889796037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x407637e2e2e2e2e3%3A0x2e2e2e2e2e2e2e2e!2zT8O8emVsIERvcnVrIEFuYW9rdWx1LCBDdW1odXJpeWV0LCAxNTAgU2suIE5vOjE0LzEsIDIzMjcwIEVsYXrEsWfEsQ!5e0!3m2!1str!2str!4v1716460000000!5m2!1str!2str" width="220" height="160" style="border:1px solid #fff; border-radius:12px; box-shadow:0 2px 8px #fff2;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#iletisimForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                var formData = {
+                    adSoyad: $('#adSoyad').val(),
+                    email: $('#email').val(),
+                    telefon: $('#telefon').val(),
+                    konu: $('#konu').val(),
+                    mesaj: $('#mesaj').val()
+                };
+
+                $.ajax({
+                    url: '/api/Iletisim',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(formData),
+                    success: function(response) {
+                        alert('Mesajınız başarıyla gönderildi.');
+                        $('#iletisimForm')[0].reset();
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+                    }
+                });
+            });
+        });
+    </script>
+} 

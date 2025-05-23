@@ -1,0 +1,207 @@
+body, html {
+    background: #fff !important;
+    color: #800020 !important;
+    font-family: 'Comic Neue', 'Fredoka One', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+.about-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 16px 32px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.about-header {
+    font-size: 2.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #fff;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.10);
+    font-family: 'Baloo 2', 'Poppins', Arial, sans-serif;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+.about-breadcrumb {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    color: #fff;
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+.about-content-box {
+    display: flex;
+    flex-direction: row;
+    gap: 48px;
+    background: rgba(139,39,70,0.97);
+    border-radius: 24px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+    padding: 40px 32px;
+    align-items: center;
+    width: 100%;
+    max-width: 950px;
+    margin-bottom: 32px;
+    transition: box-shadow 0.3s;
+}
+.about-img-box {
+    flex: 1 1 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 220px;
+    max-width: 340px;
+}
+.about-img {
+    width: 100%;
+    max-width: 320px;
+    max-height: 240px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+    border: 4px solid #fff2;
+    background: #fff2;
+}
+.about-text {
+    flex: 2 1 400px;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #fff;
+    font-family: 'Poppins', 'Baloo 2', Arial, sans-serif;
+    margin: 0;
+    text-align: left;
+    letter-spacing: 0.1px;
+    word-break: break-word;
+}
+.about-section {
+    width: 100%;
+    max-width: 950px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 18px;
+    margin: 0 auto 24px auto;
+    padding: 32px 24px 24px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.about-section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.about-section-list {
+    margin: 0 0 0 16px;
+    padding: 0;
+    color: #fff;
+    font-size: 1.08rem;
+    line-height: 2;
+}
+@media (max-width: 900px) {
+    .about-content-box {
+        flex-direction: column;
+        gap: 32px;
+        padding: 28px 10px;
+    }
+    .about-img-box {
+        max-width: 100%;
+    }
+    .about-img {
+        max-width: 90vw;
+    }
+    .about-text {
+        text-align: center;
+    }
+    .about-section {
+        padding: 18px 6vw 18px 6vw;
+    }
+}
+@media (max-width: 600px) {
+    .about-header {
+        font-size: 2rem;
+    }
+    .about-content-box {
+        padding: 12px 2vw;
+    }
+    .about-img {
+        max-width: 98vw;
+        max-height: 180px;
+    }
+    .about-section {
+        padding: 12px 2vw 12px 2vw;
+    }
+}
+.hakkimizda-bg {
+    background: #fff;
+    min-height: 100vh;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.hakkimizda-icerik, .about-text {
+    color: #800020 !important;
+    font-family: 'Comic Neue', 'Fredoka One', Arial, sans-serif !important;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    text-align: left;
+}
+.misyon-vizyon-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 64px;
+    margin: 48px auto 0 auto;
+    max-width: 1100px;
+    width: 100%;
+    padding: 0 24px;
+}
+.misyon-vizyon-block {
+    flex: 1 1 0;
+    min-width: 260px;
+    text-align: center;
+}
+.misyon-vizyon-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #800020 !important;
+}
+.misyon-vizyon-list {
+    font-size: 1.08rem;
+    line-height: 1.7;
+    margin: 0 auto 24px auto;
+    padding-left: 20px;
+    color: #800020 !important;
+    text-align: left;
+    display: inline-block;
+}
+.hakkimizda-baslik, .hakkimizda-breadcrumb {
+    color: #800020 !important;
+    font-family: 'Fredoka One', 'Comic Neue', cursive, sans-serif !important;
+    text-align: center;
+}
+h1, h2, h3, h4, h5, h6, .fw-bold, .section-title {
+    color: #800020 !important;
+    font-family: 'Fredoka One', 'Comic Neue', cursive, sans-serif !important;
+}
+a { color: #a8324a !important; }
+@media (max-width: 900px) {
+    .misyon-vizyon-container {
+        flex-direction: column;
+        gap: 32px;
+        padding: 0 8px;
+        margin: 32px auto 0 auto;
+    }
+    .misyon-vizyon-block {
+        text-align: center;
+    }
+    .misyon-vizyon-list {
+        text-align: left;
+        display: block;
+    }
+} 

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AnaOkuluYS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ef4daa007729dbcc92d414a3ec95efa128851e3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa9653e533bbcff38860315f16bf6da4bf5e8be8")]
 [assembly: System.Reflection.AssemblyProductAttribute("AnaOkuluYS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AnaOkuluYS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

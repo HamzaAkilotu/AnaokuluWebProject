@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Haftalık Yemek Listesi";
+}
+
+<!-- Google Fonts: Comic Neue ve Fredoka One -->
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fredoka+One&display=swap" rel="stylesheet">
+
+<div style="background:#fff; min-height:100vh; width:100vw; font-family:'Comic Neue', 'Fredoka One', Arial, sans-serif; color:#800020;">
+    <div style="max-width:900px; margin:0 auto; padding:48px 16px 0 16px;">
+        <h1 style="text-align:center; font-size:2.7rem; font-weight:800; letter-spacing:1px; color:#800020; margin-bottom:8px; font-family:'Fredoka One', 'Comic Neue', Arial, sans-serif;">Haftalık Yemek Listesi</h1>
+        <div style="text-align:center; font-size:1.1rem; opacity:0.85; color:#800020; margin-bottom:40px; font-family:'Comic Neue', 'Fredoka One', Arial, sans-serif;">Anasayfa / Haftalık Yemek Listesi</div>
+        <div style="margin: 0 auto 32px auto;">
+            <table style="width:100%; border-collapse:collapse; background:#fff; color:#800020; font-size:1.13rem; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px #80002011;">
+                <thead>
+                    <tr style="background:#f8e6ef;">
+                        <th style="padding:16px 18px; border-bottom:1.5px solid #e0b7c6; font-weight:700; font-size:1.15rem; text-align:left;">Günler</th>
+                        <th style="padding:16px 18px; border-bottom:1.5px solid #e0b7c6; font-weight:700; font-size:1.15rem; text-align:left;">Yemekler</th>
+                    </tr>
+                </thead>
+                <tbody id="yemekler-tbody">
+                    <!-- API'den dinamik olarak dolacak -->
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-top:32px; font-size:1.08rem; color:#800020; background:#fff; border-radius:10px; padding:18px 12px 8px 12px; text-align:center;">
+            Her gün çocuklarımız için özenle hazırlanan yemeklerimiz, sağlıklı ve dengeli beslenme prensiplerine uygun olarak seçilmektedir. Menüde değişiklikler olabileceğini unutmayınız.
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+// API'den yemek listesini çekip tabloya doldur
+fetch('/api/YemekListesi')
+    .then(res => res.json())
+    .then(data => {
+        const gunler = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma'];
+        const tbody = document.getElementById('yemekler-tbody');
+        tbody.innerHTML = '';
+        gunler.forEach(gun => {
+            const yemek = data[gun] || '-';
+            tbody.innerHTML += `<tr><td style="padding:14px 18px; border-bottom:1px solid #f3dbe6; font-weight:600;">${gun}</td><td style="padding:14px 18px; border-bottom:1px solid #f3dbe6;">${yemek}</td></tr>`;
+        });
+    })
+    .catch(() => {
+        document.getElementById('yemekler-tbody').innerHTML = '<tr><td colspan="2" style="padding:18px; text-align:center; color:#800020;">Yemek listesi yüklenemedi.</td></tr>';
+    });
+</script>
+} 

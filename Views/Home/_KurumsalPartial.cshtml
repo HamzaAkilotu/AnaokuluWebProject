@@ -1,0 +1,13 @@
+@model (string Baslik, string Aciklama, string? ResimYolu)
+<div class="card shadow-sm border-0 mb-4 p-4 d-flex flex-md-row align-items-center" style="background: #fff; border-radius: 18px;">
+    @if (!string.IsNullOrEmpty(Model.ResimYolu))
+    {
+        <div class="me-md-4 mb-3 mb-md-0">
+            <img src="@Model.ResimYolu" alt="@Model.Baslik" style="max-width: 220px; border-radius: 12px; box-shadow:0 2px 8px #f0629240;">
+        </div>
+    }
+    <div>
+        <h2 class="fw-bold mb-2" style="color:#e53935;">@Model.Baslik</h2>
+        <div class="fs-5 text-secondary">@Model.Aciklama</div>
+    </div>
+</div> 

@@ -1,0 +1,146 @@
+html, body {
+    background: #fff !important;
+    color: #800020 !important;
+    font-family: 'Comic Neue', 'Fredoka One', cursive, sans-serif !important;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+.galeri-page-full {
+    width: 100vw;
+    min-height: 100vh;
+    padding-top: 100px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.galeri-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+.galeri-baslik, .galeri-breadcrumb, .galeri-item-baslik, .galeri-col, .galeri-header, .galeri-page-full {
+    color: #800020 !important;
+    font-family: 'Comic Neue', 'Fredoka One', cursive, sans-serif !important;
+}
+.galeri-baslik {
+    font-size: 2.6rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+.galeri-breadcrumb {
+    font-size: 1.05rem;
+    text-align: center;
+    margin-bottom: 36px;
+    opacity: 0.85;
+    letter-spacing: 0.5px;
+}
+.galeri-flex-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    gap: 64px;
+    padding: 0 48px;
+    box-sizing: border-box;
+}
+.galeri-left, .galeri-right {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.galeri-center-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 64px;
+}
+.galeri-col {
+    min-width: 220px;
+    max-width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+.galeri-item-baslik {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 18px;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    width: 100%;
+}
+.galeri-img {
+    width: 240px !important;
+    height: 320px !important;
+    object-fit: cover;
+    border-radius: 18px;
+    margin-bottom: 16px;
+    border: none;
+    box-shadow: none;
+    background: none;
+    display: block;
+}
+@media (max-width: 1200px) {
+    .galeri-flex-row, .galeri-center-group {
+        gap: 24px;
+    }
+    .galeri-col {
+        max-width: 180px;
+    }
+    .galeri-img {
+        width: 180px !important;
+        height: 240px !important;
+        max-width: 180px !important;
+        max-height: 240px !important;
+    }
+}
+@media (max-width: 991px) {
+    .galeri-flex-row {
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+        padding: 0 2vw;
+        gap: 24px;
+    }
+    .galeri-center-group {
+        flex-direction: column;
+        gap: 24px;
+    }
+    .galeri-col {
+        margin-bottom: 32px;
+        max-width: 90vw;
+    }
+    .galeri-img {
+        width: 90vw !important;
+        max-width: 320px !important;
+        height: 220px !important;
+        max-height: 220px !important;
+    }
+}
+.iletisim-page-full {
+    background: #8B005D !important;
+    color: #fff;
+    font-family: 'Baloo 2', 'Fredoka', 'Poppins', 'Segoe UI', 'Nunito', sans-serif !important;
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Remove special size for Sonbaharın Sonu görseli */
+/* .galeri-center-group .galeri-col:nth-child(1) .galeri-img {
+    height: 320px;
+    max-width: 320px;
+} */ 

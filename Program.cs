@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using AnaOkuluYS.Data;
+using AnaOkuluYS.Models;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,11 +13,13 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     });
 
+builder.Services.AddControllersWithViews();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { 
-        Title = "AnaOkulu YS API", 
+    c.SwaggerDoc("v1", new OpenApiInfo {
+        Title = "AnaOkulu YS API",
         Version = "v1",
         Description = "Anaokulu Yönetim Sistemi API"
     });
@@ -38,6 +41,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
 var app = builder.Build();
 
 // Development ortamında hata sayfalarını göster
@@ -45,7 +50,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI(c => 
+    app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "AnaOkulu YS API v1");
         c.RoutePrefix = "swagger";
@@ -61,17 +66,8 @@ app.UseCors("AllowAll");
 app.UseStaticFiles();
 app.UseRouting();
 app.UseHttpsRedirection();
-app.UseAuthorization();
 
 app.MapControllers();
-app.MapGet("/", () => Results.Redirect("/swagger"));
+app.MapDefaultControllerRoute();
 
-try
-{
-    app.Run();
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Uygulama başlatılırken hata oluştu: {ex.Message}");
-    throw;
-} 
+app.Run(); 

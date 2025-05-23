@@ -9,10 +9,10 @@ namespace AnaOkuluYS.Models
 
         [Required]
         [MaxLength(200)]
-        public string Baslik { get; set; }
+        public string Baslik { get; set; } = string.Empty;
 
         [Required]
-        public string Icerik { get; set; }
+        public string Icerik { get; set; } = string.Empty;
 
         [Required]
         public DateTime YayinTarihi { get; set; }

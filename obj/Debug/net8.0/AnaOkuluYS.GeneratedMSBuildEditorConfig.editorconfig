@@ -28,12 +28,80 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/EtkinlikTakvimi/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXRraW5saWtUYWt2aW1pXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/EtkinlikTakvimi/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXRraW5saWtUYWt2aW1pXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/EtkinlikTakvimi/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXRraW5saWtUYWt2aW1pXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/EtkinlikTakvimi/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXRraW5saWtUYWt2aW1pXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/BransDerslerimiz.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCcmFuc0RlcnNsZXJpbWl6LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/EgitimKadromuz.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZ2l0aW1LYWRyb211ei5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/Galeri.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxHYWxlcmkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/HaftalikYemekListesi.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIYWZ0YWxpa1llbWVrTGlzdGVzaS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/Hakkimizda.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIYWtraW1pemRhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/Iletisim.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbGV0aXNpbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/IsBasvurusu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJc0Jhc3Z1cnVzdS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/OkulServisi.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxPa3VsU2VydmlzaS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/Okulumuz.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxPa3VsdW11ei5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/RehberlikDestegi.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWhiZXJsaWtEZXN0ZWdpLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/YaptigimizEtkinlikler.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxZYXB0aWdpbWl6RXRraW5saWtsZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Home/_KurumsalPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfS3VydW1zYWxQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/HamzaSoftware/Desktop/AnaOkuluYS/Views/Shared/Error.cshtml]

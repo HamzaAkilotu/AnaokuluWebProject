@@ -182,6 +182,16 @@ C:\Users\Hamza Akılotu\OneDrive\Desktop\AnaOkuluYS\obj\Debug\net8.0\refint\AnaO
 C:\Users\Hamza Akılotu\OneDrive\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.pdb
 C:\Users\Hamza Akılotu\OneDrive\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.genruntimeconfig.cache
 C:\Users\Hamza Akılotu\OneDrive\Desktop\AnaOkuluYS\obj\Debug\net8.0\ref\AnaOkuluYS.dll
+C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.csproj.AssemblyReference.cache
+C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.AssemblyInfoInputs.cache
+C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.AssemblyInfo.cs
+C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.csproj.CoreCompileInputs.cache
+C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.RazorAssemblyInfo.cache
+C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.RazorAssemblyInfo.cs
+C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.sourcelink.json
 C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\bin\Debug\net8.0\appsettings.json
 C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\bin\Debug\net8.0\AnaOkuluYS.staticwebassets.runtime.json
@@ -331,16 +341,6 @@ C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\bin\Debug\net8.0\runtimes\win\lib\net6
 C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.csproj.AssemblyReference.cache
-C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.AssemblyInfoInputs.cache
-C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.AssemblyInfo.cs
-C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.csproj.CoreCompileInputs.cache
-C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.RazorAssemblyInfo.cache
-C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.RazorAssemblyInfo.cs
-C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\AnaOkuluYS.sourcelink.json
 C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\scopedcss\bundle\AnaOkuluYS.styles.css
 C:\Users\HamzaSoftware\Desktop\AnaOkuluYS\obj\Debug\net8.0\scopedcss\projectbundle\AnaOkuluYS.bundle.scp.css

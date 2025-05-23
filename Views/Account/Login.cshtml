@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Yönetici Girişi";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yönetici Girişi - Bilge Kaşifler Anaokulu</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        body { background: linear-gradient(120deg, #e53935 60%, #f06292 100%); min-height: 100vh; }
+        .login-card { max-width: 400px; margin: 80px auto; border-radius: 18px; box-shadow: 0 2px 16px #e5393530; }
+        .login-card .card-header { background: #fff; border-radius: 18px 18px 0 0; }
+        .login-card .btn-primary { background: linear-gradient(90deg, #e53935 60%, #f06292 100%); border: none; }
+        .login-card .btn-primary:hover { background: linear-gradient(90deg, #f06292 60%, #e53935 100%); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card login-card">
+            <div class="card-header text-center">
+                <img src="/images/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-19%20234400.png" alt="Logo" style="height:60px;">
+                <h3 class="mt-2 mb-0" style="color:#e53935;">Yönetici Girişi</h3>
+            </div>
+            <div class="card-body">
+                <form asp-action="Login" method="post">
+                    <div class="mb-3">
+                        <label for="kullaniciAdi" class="form-label">Kullanıcı Adı</label>
+                        <input type="text" class="form-control" id="kullaniciAdi" name="kullaniciAdi" required autofocus />
+                    </div>
+                    <div class="mb-3">
+                        <label for="sifre" class="form-label">Şifre</label>
+                        <input type="password" class="form-control" id="sifre" name="sifre" required />
+                    </div>
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger">@ViewData.ModelState[string.Empty]?.Errors.FirstOrDefault()?.ErrorMessage</div>
+                    }
+                    <button type="submit" class="btn btn-primary w-100">Giriş Yap</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

@@ -7,10 +7,10 @@ namespace AnaOkuluYS.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class OgretmenController : ControllerBase
+    public class OneriController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public OgretmenController(ApplicationDbContext context)
+        public OneriController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -18,30 +18,30 @@ namespace AnaOkuluYS.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _context.Ogretmenler.ToListAsync());
+            return Ok(await _context.Oneriler.ToListAsync());
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var ogretmen = await _context.Ogretmenler.FindAsync(id);
-            if (ogretmen == null) return NotFound();
-            return Ok(ogretmen);
+            var oneri = await _context.Oneriler.FindAsync(id);
+            if (oneri == null) return NotFound();
+            return Ok(oneri);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Ogretmen ogretmen)
+        public async Task<IActionResult> Create(Oneri oneri)
         {
-            _context.Ogretmenler.Add(ogretmen);
+            _context.Oneriler.Add(oneri);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(Get), new { id = ogretmen.Id }, ogretmen);
+            return CreatedAtAction(nameof(Get), new { id = oneri.Id }, oneri);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Ogretmen ogretmen)
+        public async Task<IActionResult> Update(int id, Oneri oneri)
         {
-            if (id != ogretmen.Id) return BadRequest();
-            _context.Entry(ogretmen).State = EntityState.Modified;
+            if (id != oneri.Id) return BadRequest();
+            _context.Entry(oneri).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return NoContent();
         }
@@ -49,9 +49,9 @@ namespace AnaOkuluYS.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var ogretmen = await _context.Ogretmenler.FindAsync(id);
-            if (ogretmen == null) return NotFound();
-            _context.Ogretmenler.Remove(ogretmen);
+            var oneri = await _context.Oneriler.FindAsync(id);
+            if (oneri == null) return NotFound();
+            _context.Oneriler.Remove(oneri);
             await _context.SaveChangesAsync();
             return NoContent();
         }
